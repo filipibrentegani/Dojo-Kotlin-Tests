@@ -1,5 +1,7 @@
 package com.example.dojokotlintests
 
+import androidx.annotation.VisibleForTesting
+
 class MoneyExchange(private val exchangeRateService: ExchangeRateService) {
     companion object {
         const val exchangeTax = 1.2
@@ -10,6 +12,9 @@ class MoneyExchange(private val exchangeRateService: ExchangeRateService) {
         val totalValue = amount * price * exchangeTax
         return ExchangeEntity(totalValue, amount)
     }
+
+    @VisibleForTesting
+    fun Double.exchangeMoney(currency: String) = exchangeMoney(currency, this)
 }
 
 class ExchangeEntity(
